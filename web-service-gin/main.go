@@ -1,7 +1,7 @@
 package main
 
 import (
-	"example/web-service-gin/controllers"
+	"example/web-service-gin/albums"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,9 +9,8 @@ import (
 func main() {
 	router := gin.Default()
 
-	router.GET("/albums", controllers.GetAlbums)
-	router.POST("/albums", controllers.PostAlbums)
-	router.GET("/albums/:id", controllers.GetAlbumByID)
+	albumController := albums.NewAlbumController()
+	albumController.RegisterRoutes(router)
 
 	router.Run("localhost:8080")
 }
